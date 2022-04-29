@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>All Products</title>
+    <meta charset="UTF-8" />
+    <style>
+        #navbar {
+            padding: 20px;
+        }
+    </style>
+</head>
+
+<body>
+    <div id="navbar">
+        <div id="cart-count"></div>
+        <a href="cart.html">Go to Cart</a>
+    </div>
+    <div id="sort">
+        <select name="sort" id="sortButton" onchange="filterProducts()">
+            <option value="">SORT</option>
+            <option value="ASC">Low to High</option>
+            <option value="DESC">High to Low</option>
+        </select>
+        <select name="filter" id="filterButton" onchange="filterProducts()">
+            <option value="">FILTER</option>
+            <option value="0-50">0-50</option>
+            <option value="51-100">50-100</option>
+            <option value="101-200">100-200</option>
+            <option value=">200">Greater than 200</option>
+        </select>
+    </div>
+    <div id="container"></div>
+
+    <script src="./scripts/products.js"></script>
+</body>
+
+</html>
