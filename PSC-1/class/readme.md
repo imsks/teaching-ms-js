@@ -9,4 +9,4 @@
 // 7. Add Coupon MASAI30 to get 30% discount on overall cart value
 // 8. Add Checkout page to add address and go to Payments page
 // 9. Add Payments page to add card details
-// 10. If Order is placed, show Success Confirmation
+// 10. If Order is placed, Take 3 sec, show Success Confirmation

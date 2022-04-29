@@ -1,37 +1,58 @@
 // Get the container element
+const container = document.getElementById('container');
+
 // Get total price element
+const totalPriceDiv = document.getElementById('totalDisplay');
 
 // Get the cart from localstorage
+const cart = JSON.parse(localStorage.getItem('cart'));
 
 // If the cart is not empty => Put an empty cart
+if (!cart) localStorage.setItem('cart', JSON.stringify([]));
 
 // Get total cart value
+let total = 0;
+cart.forEach((cartItem) => {
+  total += cartItem.price;
+});
+
+updateTotalDisplay(total);
 
 // Update the total display
+function updateTotalDisplay(total) {
+  totalPriceDiv.textContent = total;
+}
 
 // Call DOM Update functions
+updateDOM();
 
 // Update the DOM
-  // Clear the container
+function updateDOM() {
+  container.innerHTML = '';
 
-  // Loop through the cart
-    // Create the product card element
+  cart.forEach((cartItem) => {
+    let productCard = document.createElement('div');
 
-    // Add image element
-    // Set the image source
+    let image = document.createElement('img');
+    image.src = cartItem.image;
 
-    // Add title element
-    // Set the title text
+    let name = document.createElement('p');
+    name.textContent = cartItem.title;
 
-    // Add price element
-    // Set the price text
+    let price = document.createElement('p');
+    price.textContent = cartItem.price;
 
-    // Append the elements to the product card
-    // Add the product card to the container
+    productCard.append(image, name, price);
+    container.append(productCard);
+  });
+}
 
 // Apply the discount
-  // Get the coupon code
+function applyCoupon() {
+  let couponInput = document.getElementById('couponCount').value;
 
-  // Check if the coupon code is valid
-    // Set total to 30% of the original total
-    // Update the total display
+  if (couponInput === 'MASAI30') {
+    total = total - 0.3 * total;
+    updateTotalDisplay(total);
+  }
+}
