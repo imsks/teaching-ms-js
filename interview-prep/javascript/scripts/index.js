@@ -155,3 +155,126 @@
 // };
 
 // sum(2, 3);
+
+// Q. What is High Order Function?
+// // A. Accepts function as argument
+// function foo(callback) {
+//   // Calling callback function
+//   callback(); // I'm a callback function
+// }
+
+// function bar() {
+//   console.log("I'm a callback function");
+// }
+
+// // Passing bar function in foo so it gets called inside foo function
+// foo(bar);
+
+// // B. Returns a function
+// function foo() {
+//   return function () {
+//     console.log('Logging from returned function');
+//   };
+// }
+
+// const anotherFunction = foo()
+// anotherFunction()
+
+// // Q. What is IIFE?
+// // A. With normal function
+// function callMe() {
+//     console.log('Function gets called');
+//   }
+
+//   callMe() // Function gets called
+
+//   // B. With IFFE
+//   (function () {
+//     console.log("Immidialtely called after it's created."); // Immidialtely called here
+//   })();
+
+//   // TIP - Observe here that in IIFE even though function is defined but without any name. These are called Anonymous functions.
+
+// Q. What is an anonymous function?
+// // A. Assigning to a variable
+// const sum = function (a, b) {
+//   return a + b;
+// };
+
+// console.log(sum(2, 4));
+
+// // B. As callback function
+// [1, 2, 3, 4].forEach(function (item) {
+//   // Function inside forEach is anonymous function
+//   // Do something with each element
+// });
+
+// // TIP - Observe here that we're provide another function in forEach function that makes our forEach function a high order function, just we understood above.
+
+// // Q.  What is a unary function?
+// function foo(a) {
+//   console.log("I'm a uniary function");
+// }
+
+// function bar(a, b) {
+//   console.log("I'm not a uniary function");
+// }
+
+// Q. What is a currying function?
+// // A. Multi-argument function
+// const sumOfThreeNumbers = (a, b, c) => {
+//   return a + b + c;
+// };
+
+// sumOfThreeNumbers(1, 2, 3); // 6
+
+// // B. With Curry function
+// const sumOfThreeNumbersWithCurrying = (a) => {
+//   return (b) => { // Calling sumOfThreeNumbersWithCurrying will return this
+//     return (c) => { // Calling sumOfThreeNumbersWithCurrying 2x will return this
+//       return a + b + c; // Calling sumOfThreeNumbersWithCurrying 3x will return this
+//     };
+//   };
+// };
+
+// const aFunction = sumOfThreeNumbersWithCurrying(1); // Returns a function
+// const anotherFunction = aFunction(2); // Returns a function again
+// const andAnotherFunction = anotherFunction(3); // Returns value
+// console.log(andAnotherFunction); // 6
+
+// // Q. What is a callback function?
+// function mainFunction(firstCallback) { // 2
+//   firstCallback(callBack2); // 3
+// }
+
+// function callback1(secondCallback) { // 4
+//   console.log('First callback'); // 5
+
+//   secondCallback(callback3); // 6
+// }
+
+// function callBack2(thirdCallback) { // 7
+//   console.log('Second callback'); // 8
+
+//   thirdCallback(); // 9
+// }
+
+// function callback3() { // 10
+//   console.log('Third callback'); // 11
+// }
+
+// mainFunction(callback1); // 1.
+
+
+// // Q. What does closures mean?
+// function sum(a) {
+//     return function (b) { // Here sum function returns another function
+//       return a + b; // a is not defined in this scope(See cusly braces.) It's defined in OUTER function sum still it can do sum operation as a + b
+//     };
+//   }
+  
+//   const returnedFunction = sum(2); // Sending a here. Returns a function asking to provide b value as well
+//   const result = returnedFunction(4); // Sending b here. A is already sent above No?
+//   console.log(result); // 6
+  
+//   // TIP - This closure concept was also used in Currying as we saw above.
