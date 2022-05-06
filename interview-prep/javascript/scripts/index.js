@@ -265,16 +265,182 @@
 
 // mainFunction(callback1); // 1.
 
-
 // // Q. What does closures mean?
 // function sum(a) {
 //     return function (b) { // Here sum function returns another function
 //       return a + b; // a is not defined in this scope(See cusly braces.) It's defined in OUTER function sum still it can do sum operation as a + b
 //     };
 //   }
-  
+
 //   const returnedFunction = sum(2); // Sending a here. Returns a function asking to provide b value as well
 //   const result = returnedFunction(4); // Sending b here. A is already sent above No?
 //   console.log(result); // 6
-  
+
 //   // TIP - This closure concept was also used in Currying as we saw above.
+
+// Q. Difference between Call, Apply & Bind
+// // A. Call
+// const movie1 = {
+//   name: 'Bahubali: The Beginning',
+//   director: 'S. S. Rajamauli',
+//   year: 2015,
+// };
+
+// const movie2 = {
+//   name: 'Bahubali: The Conslusion',
+//   director: 'S. S. Rajamauli',
+//   year: 2017,
+// };
+
+// function getMovieInfo(additionArgument) {
+//   console.log(`Movie's name is ${this.name}`);
+//   console.log(`Movie's Director name is ${this.director}`);
+//   console.log(`Movie was release in ${this.year}`);
+//   console.log(`An Additional Arguement is ${additionArgument}`);
+// }
+
+// // To get Bahubali: The Beginning Data because calling with movie1 object
+// getMovieInfo.call(movie1, 'An Additional Parameter');
+// // To get Bahubali: The Conclusion Data because calling with movie2 object
+// getMovieInfo.call(movie2, 'An Additional Parameter');
+
+// // B. Apply => Same as Call method but parameters passed inside array
+// const movie1 = {
+//   name: 'Bahubali: The Beginning',
+//   director: 'S. S. Rajamauli',
+//   year: 2015,
+// };
+
+// const movie2 = {
+//   name: 'Bahubali: The Conslusion',
+//   director: 'S. S. Rajamauli',
+//   year: 2017,
+// };
+
+// function getMovieInfo(additionArgument, anotherAdditionalParameter) {
+//   console.log(`Movie's name is ${this.name}`);
+//   console.log(`Movie's Director name is ${this.director}`);
+//   console.log(`Movie was release in ${this.year}`);
+//   console.log(`An Additional Arguement is ${additionArgument}`);
+//   console.log(
+//     `An Another Additional Arguement is ${anotherAdditionalParameter}`
+//   );
+// }
+
+// // To get Bahubali: The Beginning Data because calling with movie1 object
+// getMovieInfo.apply(movie1, [
+//   // Observe here we pass parameter in an array, unlike call method where we simply pass without any array. That's the only difference
+//   'An Additional Parameter',
+//   'Another Additional Parameter',
+// ]);
+// // To get Bahubali: The Conclusion Data because calling with movie2 object
+// getMovieInfo.apply(movie2, [
+//   'An Additional Parameter',
+//   'Another Additional Parameter',
+// ]);
+
+// // C. Bind
+// const movie1 = {
+//   name: 'Bahubali: The Beginning',
+//   director: 'S. S. Rajamauli',
+//   year: 2015,
+// };
+
+// const movie2 = {
+//   name: 'Bahubali: The Conslusion',
+//   director: 'S. S. Rajamauli',
+//   year: 2017,
+// };
+
+// function getMovieInfo(additionArgument, anotherAdditionalParameter) {
+//   console.log(`Movie's name is ${this.name}`);
+//   console.log(`Movie's Director name is ${this.director}`);
+//   console.log(`Movie was release in ${this.year}`);
+//   console.log(`An Additional Arguement is ${additionArgument}`);
+//   console.log(
+//     `An Another Additional Arguement is ${anotherAdditionalParameter}`
+//   );
+// }
+
+// // Bounded movie1 object with bind method and stored the result in movie1Info
+// const movie1Info = getMovieInfo.bind(movie1);
+// // Bounded movie2 object with bind method and stored the result in movie2Info
+// const movie2Info = getMovieInfo.bind(movie2);
+
+// // NOTE Bind method returns a function so we'll need to call it.
+
+// // Case 1: Without any parameters
+// movie1Info();
+// /* Logged the data as follows -
+// Movie's name is Bahubali: The Beginning
+// Movie's Director name is S. S. Rajamauli
+// Movie was release in 2015
+// An Additional Arguement is undefined => HERE Undefined because while calling movie1Info() we didn't pass any parameters
+// An Another Additional Arguement is undefined => HERE Undefined because while calling movie1Info() we didn't pass any parameters
+// */
+
+// // Case 2: With parameters
+// movie1Info('An Additional Parameter', 'Another Additional Parameter');
+// /* Logged the data as follows -
+// Movie's name is Bahubali: The Beginning
+// Movie's Director name is S. S. Rajamauli
+// Movie was release in 2015
+// An Additional Arguement is An Additional Parameter
+// An Another Additional Arguement is Another Additional Parameter
+// */
+
+// // Q. Difference between == and ===
+// 0 == false   // true
+// 0 === false  // false
+// 1 == "1"     // true
+// 1 === "1"    // false
+// null == undefined // true
+// null === undefined // false
+// '0' == false // true
+// '0' === false // false
+// []==[] or []===[] //false, refer different objects in memory
+// {}=={} or {}==={} //false, refer different objects in memory
+
+// // Q. Why do we need callback functions?
+// function firstFunction() {
+//   // Simulate a code delay
+//   setTimeout(function () {
+//     console.log('First function called');
+//   }, 1000);
+// }
+// function secondFunction() {
+//   console.log('Second function called');
+// }
+// firstFunction();
+// secondFunction();
+
+// // Logges in order
+// // 1. Second function called
+// // 2. First function called
+
+// Q. What is a Promise?
+// const promise = new Promise(function (resolve, reject) {
+//   // When getting resolved
+//   resolve({});
+
+//   // When getting rejected
+//   reject({});
+// });
+
+// // Case 1: When getting resolved
+// const promise1 = new Promise(function (resolve, reject) {
+//   setTimeout(() => {
+//     resolve("I'm a resolved Promise!");
+//   }, 500);
+// });
+
+// promise1.then((value) => console.log(value)); // I'm a resolved Promise!
+
+// // Case 2: When getting rejected
+// const promise2 = new Promise(function (resolve, reject) {
+//   setTimeout(() => {
+//     reject("I'm a rejected Promise!");
+//   }, 500);
+// });
+
+// promise2.catch((value) => console.log(value)); // I'm a rejected Promise!
