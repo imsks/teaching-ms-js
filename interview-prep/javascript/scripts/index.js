@@ -444,3 +444,68 @@
 // });
 
 // promise2.catch((value) => console.log(value)); // I'm a rejected Promise!
+
+// // Q. Why is callback hell?
+// oneFunction(
+//     anotherFunction(
+//         andAnotherFunction()
+//     )
+// );
+
+// // Q. What is a Promise Chaining?
+// new Promise(function (resolve, reject) {
+//   setTimeout(() => resolve(1), 1000);
+// })
+//   .then(function (result) {
+//     console.log(result); // 1
+//     return result * 2;
+//   })
+//   .then(function (result) {
+//     console.log(result); // 2
+//     return result * 3;
+//   })
+//   .then(function (result) {
+//     console.log(result); // 6
+//     return result * 4;
+//   });
+
+// // Q. What is a Promise Chaining?
+// // Defining all promises
+// const promiseFor1Sec = new Promise(function (resolve, reject) {
+//   setTimeout(() => resolve(1), 1000);
+// });
+
+// const promiseFor2Sec = new Promise(function (resolve, reject) {
+//   setTimeout(() => resolve(2), 2000);
+// });
+
+// const promiseForReject = new Promise(function (resolve, reject) {
+//   reject(2);
+// });
+
+// // // 1. Promise.all
+// // // 1A. All are resolved after 2 seconds because even if 1st will resolve in 1sec,
+// // //  it still waits for 2nd promise to get resolved BECAUSE ALL NEEDS TO BE RESOLVED
+// // Promise.all([promiseFor1Sec, promiseFor2Sec]).then(function (values) {
+// //   console.log(values); // [1, 2]
+// // });
+
+// // // 1B. Or Even if one is rejected
+// // Promise.all([promiseFor1Sec, promiseFor2Sec, promiseForReject]).then(function (
+// //   values
+// // ) {
+// //   console.log(values); // Error | Uncaught (in promise) 2
+// // });
+
+// // // 2. Promise.race
+// // // 2A. For resolve
+// // Promise.race([promiseFor1Sec, promiseFor2Sec]).then(function (values) {
+// //   console.log(values); // 1 because promiseFor1Sec will resolve first
+// // });
+
+// // // 2B. For reject
+// // Promise.race([promiseFor1Sec, promiseFor2Sec, promiseForReject]).then(function (
+// //   values
+// // ) {
+// //   console.log(values); // 1 because promiseFor1Sec will resolve first
+// // });
