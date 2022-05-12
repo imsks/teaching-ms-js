@@ -509,3 +509,109 @@
 // // ) {
 // //   console.log(values); // 1 because promiseFor1Sec will resolve first
 // // });
+
+// Q. Difference between null and undefined
+// let x;
+// console.log(x)
+
+// let x = null;
+// console.log(x);
+
+// Q. What is setTimeout & setInterval?
+// // // A. setTimeout
+// // setTimeout(function () {
+// //   console.log("I'm a callback function");
+// // }, 2000);
+
+// const callbackFunction = function () {
+//   console.log("I'm a callback function");
+// };
+
+// setTimeout(callbackFunction, 2000);
+
+// B. setInterval
+// setInterval(function () {
+//   console.log("I'm a callback function");
+// }, 500);
+
+// const callbackFunction = function () {
+//   console.log("I'm a callback function");
+// };
+
+// setInterval(callbackFunction, 500);
+
+// // Q. What is JSON & its methods?
+// // A. JSON.stringify()
+// const object = {
+//   name: 'James',
+//   age: 12,
+// };
+
+// const stringifiedObject = JSON.stringify(object);
+// console.log(stringifiedObject); // "{"name":"James","age":12}"
+// console.log(typeof stringifiedObject); // string
+
+// // B. JSON.parse()
+// const parsedObject = JSON.parse(stringifiedObject);
+// console.log(parsedObject);
+// console.log(typeof parsedObject);
+
+// Q. Object Referencing
+// // A. By value => Primitive Data Type
+// const message = 'Hello world';
+// const anotherMessage = message;
+
+// console.log(message); // Hello world
+// console.log(anotherMessage); // Hello world
+
+// // B. By reference => Primitive Data Type
+// let user = {
+//   name: 'John',
+// };
+
+// let admin = user; // Copy the reference
+
+// admin.name = 'Ramesh';
+
+// console.log(admin.name); // Ramesh
+// console.log(user.name); // Ramesh
+
+// console.log(admin === user);
+
+// // Case 1.
+// const object = {};
+// const anotherObject = {};
+// console.log(object == anotherObject); // false
+
+// // Case 2.
+// const object = {
+//   name: 'Ramesh',
+// };
+// const anotherObject = {
+//   name: 'Ramesh',
+// };
+// console.log(object == anotherObject); // false
+
+// // Case 3.
+// const array = [];
+// const anotherArray = [];
+// console.log(array == anotherArray); // false
+
+// // Q. How do we copy key-value pairs of an object without copying the reference?
+// const object = {
+//   name: 'Ramesh',
+//   age: 30,
+// };
+
+// let anotherObject = {};
+
+// for (let key in object) {
+//   anotherObject[key] = object[key];
+// }
+
+// console.log(object); // {name: 'Ramesh', age: 30}
+// console.log(anotherObject); // {name: 'Ramesh', age: 30}
+// console.log(object == anotherObject); // false
+
+// Q. Check if an object is empty
+// Object.keys(obj).length === 0 && obj.constructor === Object; // Since date object length is 0, you need to check constructor check as well
